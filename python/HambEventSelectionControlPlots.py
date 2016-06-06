@@ -94,6 +94,14 @@ class HambEventSelectionControlPlots(BaseControlPlots):
       self.add("METsignificance_hamb","missing transverse energy significance",nBinMETsig,0,xMaxMETsig)
       
 
+      #self.add("mupt1","muon Pt 1",nBinMuPt,0,xMaxMuPt)
+      #self.add("mupt2","muon Pt 2",nBinMuPt,0,xMaxMuPt)
+      #self.add("mupt3","muon Pt 3",nBinMuPt,0,xMaxMuPt)
+      #self.add("mupt4","muon Pt 4",nBinMuPt,0,xMaxMuPt)
+      #self.add("mupt5","muon Pt 5",nBinMuPt,0,xMaxMuPt)
+
+
+
     def process(self, event):
       """eventSelectionControlPlots"""
       result = { }
@@ -173,7 +181,9 @@ class HambEventSelectionControlPlots(BaseControlPlots):
 
 	#Jet selection
         dijet = event.dijet_muChannel
-        matchedjets = event.dijet_matchedJetWithB
+        matchedjets = []
+	if not event.object().event().eventAuxiliary().isRealData():
+           matchedjets = event.dijet_matchedJetWithB
         if not dijet[0] is None:
           b1 = ROOT.TLorentzVector(dijet[0].px(),dijet[0].py(),dijet[0].pz(),dijet[0].energy())
         if not dijet[1] is None:

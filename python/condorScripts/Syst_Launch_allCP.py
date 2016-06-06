@@ -9,7 +9,7 @@ import sys
 import LaunchOnCondor
 import glob
 
-theConfig = "UserCode.zbb_louvain."+sys.argv[1]
+theConfig = "UserCode.zbb_louvain."+sys.argv[1]+"_"+sys.argv[2]
 if theConfig is not None:
     configImplementation = __import__(theConfig)
     atts=theConfig.split(".")[1:]
@@ -30,7 +30,7 @@ dir_plot = {
 dir_rds = {
   "abdollah": "",
   "acaudron": "/nfs/user/acaudron/ControlPlots/cp5314p1/",
-  "ajafari": "/home/fynu/ajafari/storage/RDS/SL6/V6/",
+  "ajafari": "/home/fynu/ajafari/storage/RDS/SL6/V5"+sys.argv[2]+"/",
   "bfrancois": "/nfs/user/bfrancois/RDS/",
   "cbeluffi": "/home/fynu/cbeluffi/storage/ControlPlots/",
   "vizangarciaj": "/home/fynu/vizangarciaj/storage/RDS/testOct2014/",
@@ -41,15 +41,15 @@ dir_rds = {
         
 samples = [
     #"DATA",
-    "DY",
-    "TT",
+    #"DY",
+    #"TT",
     #"ZZ",
     ##"ZH",
     #"WW",
     #"WZ",
     #"SingleT",
     ##"ZA"
-    #"Hamb"
+    "Hamb"
     ]
 ZZsamples = [
     "ZZ",
@@ -111,14 +111,13 @@ if mode == "plots":
 
 TTsamples = [
     "TTFullLept",
- #   "TTSemiLept",
+    #"TTSemiLept",
     ]
 Hambsamples = [
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-30_LowJetPt10",
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-40_LowJetPt10",
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-50_LowJetPt10",
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-60_LowJetPt10",
-   "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-20",
 ]
 mass = [125] #[110,115,120,125,130,135]
 
@@ -202,7 +201,6 @@ jobs = {
     "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-40_LowJetPt10" : 50,
     "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-50_LowJetPt10" : 50,
     "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-60_LowJetPt10" : 50,
-    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-20" : 50,
     }
 
 if mode == "plots":
@@ -217,7 +215,7 @@ f = open(dir+string_mode+cpVersion+'/README.txt', 'w')
 f.write(README)
 f.close()
 os.system('mkdir '+dir+"/config")
-os.system('cp ../Hamb*.py ../hamb*.py ../basicConfig.py ../ObjectSelection.py ../Objects*.py '+dir+"/config")
+os.system('cp ../Hamb*.py ../hamb*.py ../basicConfig*.py ../ObjectSelection.py ../Objects*.py '+dir+"/config")
 
 
 for sample in samples :

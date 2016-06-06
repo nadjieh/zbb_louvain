@@ -14,9 +14,12 @@ class BtaggingReWeightingControlPlots(BaseControlPlots):
       self.WP = WP
       self.map = {}
       for cat in PatAnalysis.EventSelection.categoryNames:
+	  print cat
           wpcat = "CA8"*cat.count("CA8")+"Subjets"*cat.count("Subjets")+"subjets"*cat.count("subjets")+WP[1]*cat.count("HE")+WP[0]*cat.count("HP")
+	  print wpcat
           if wpcat == "" : continue
           if len(wpcat) <= 2 : wpcat = "AK5"+wpcat
+	  print wpcat
           if wpcat in self.map : continue
           self.map[wpcat] = PatAnalysis.EventSelection.categoryNames.index(cat)
           self.add(wpcat,wpcat,200,0,2)
@@ -50,6 +53,8 @@ class BtaggingReWeightingControlPlots(BaseControlPlots):
       result[self.WP[1]+"excl"] = event.weight(weightList=["Btagging"], forceMode=self.WP[1]+"excl", btagging=self._btagging)
       result[self.WP[0]+"excl"] = event.weight(weightList=["Btagging"], forceMode=self.WP[0]+"excl", btagging=self._btagging)
       result[self.WP[1]+self.WP[1]]   = event.weight(weightList=["Btagging"], forceMode=self.WP[1]+self.WP[1],   btagging=self._btagging)
+      print self.WP[1]+self.WP[1]
+      print event.weight(weightList=["Btagging"], forceMode=self.WP[1]+self.WP[1],   btagging=self._btagging)
       result[self.WP[1]+self.WP[0]]   = event.weight(weightList=["Btagging"], forceMode=self.WP[1]+self.WP[0],   btagging=self._btagging)
       result[self.WP[0]+self.WP[0]]   = event.weight(weightList=["Btagging"], forceMode=self.WP[0]+self.WP[0],   btagging=self._btagging)
       

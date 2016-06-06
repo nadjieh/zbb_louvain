@@ -51,7 +51,7 @@ class configuration:
   # control plot classes
   controlPlots = [
     controlPlot("jetmet", "ObjectsControlPlots", "JetmetControlPlots", { "btagging":btagging, "WP":WP, "postjetsall":"muChannel", "postjetsgood":"mu" }),
-    controlPlot( "jetmetmatched", "ObjectsControlPlots", "JetmetControlPlots", { "btagging":btagging, "WP":WP, "postjetsall":"matchedJetWithB", "postjetsgood":"muMatched" }),
+    #controlPlot( "jetmetmatched", "ObjectsControlPlots", "JetmetControlPlots", { "btagging":btagging, "WP":WP, "postjetsall":"matchedJetWithB", "postjetsgood":"muMatched" }),
     controlPlot("allMets", "ObjectsControlPlots", "MetControlPlots", { }),
     controlPlot("vertexAssociation", "VertexAssociationControlPlots", "VertexAssociationControlPlots", { }),
     controlPlot("me", "MatrixElementControlPlots", "MatrixElementControlPlots", { }),
@@ -136,8 +136,8 @@ class configuration:
 
   #list of objects to update if you plan to chenge the b-tag WP and/or algo (see: "changeBTAG" below)
   toupdateForBtag = {
-    "controlPlots" : ["jetmet","jetmetmatched"],
-    #"controlPlots" : ["jetmet"],
+    #"controlPlots" : ["jetmet","jetmetmatched"],
+    "controlPlots" : ["jetmet"],
     "eventProducers" : ["category", "dijet_muChannel", "dijet_eleChannel", "dijet_all"]
     }
 

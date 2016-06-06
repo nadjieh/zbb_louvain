@@ -244,5 +244,5 @@ def updateConfMC(c=configuration):
         eventWeight("Btagging","BtaggingWeight","BtaggingWeight", {"jmin1":0,"jmax1":999,"jmin2":0,"jmax2":999,"file":c.btagperfData,"btagging":c.btagging,"WP":c.WP}),
         eventWeight("Leptons","LeptonsReweighting","LeptonsReWeighting", {}),
         eventWeight("MonteCarlo","MonteCarloReweighting","MonteCarloReWeighting", {"shift":0, "MCmode":weightmode}),
-        eventWeight("PileUp","LumiReWeighting","LumiReWeighting", {"MonteCarloFileName":c.pileupMC, "DataFileName":c.pileupData, "systematicShift":0})
+        eventWeight("PileUp","LumiReWeighting","LumiReWeighting", {"MonteCarloFileName":c.pileupMC, "DataFileName":c.pileupData, "systematicShift":1})
         ]

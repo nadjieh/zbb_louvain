@@ -30,7 +30,7 @@ dir_plot = {
 dir_rds = {
   "abdollah": "",
   "acaudron": "/nfs/user/acaudron/ControlPlots/cp5314p1/",
-  "ajafari": "/home/fynu/ajafari/storage/RDS/SL6/V6/",
+  "ajafari": "/home/fynu/ajafari/storage/RDS/SL6/V5/",
   "bfrancois": "/nfs/user/bfrancois/RDS/",
   "cbeluffi": "/home/fynu/cbeluffi/storage/ControlPlots/",
   "vizangarciaj": "/home/fynu/vizangarciaj/storage/RDS/testOct2014/",
@@ -41,12 +41,12 @@ dir_rds = {
         
 samples = [
     #"DATA",
-    "DY",
-    "TT",
+    #"DY",
+    #"TT",
     #"ZZ",
     ##"ZH",
     #"WW",
-    #"WZ",
+    "WZ",
     #"SingleT",
     ##"ZA"
     #"Hamb"
@@ -83,7 +83,10 @@ ZAsamples = [
     #"ZA_262_99",
     #"ZA_660_450",
     ]
-
+DYMissing = [
+        ("DYjets_M10to50" , []),
+	("DYjets" , [269]),
+]
 DYsamples = [
     "DYjets",
     #"DY1jets",
@@ -111,15 +114,35 @@ if mode == "plots":
 
 TTsamples = [
     "TTFullLept",
- #   "TTSemiLept",
+    "TTSemiLept",
     ]
+TTMissing = [
+        ("TTFullLept" , [11, 13, 35, 36, 54, 59, 66, 74, 79, 83, 101, 131, 134, 141, 151, 186, 200, 225, 243, 246, 271, 327, 329, 336, 410, 411, 421, 422, 423, 440]),
+        ("TTSemiLept" , [131, 218]),
+]
 Hambsamples = [
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-30_LowJetPt10",
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-40_LowJetPt10",
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-50_LowJetPt10",
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-60_LowJetPt10",
-   "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-20",
 ]
+HambMissing = [
+    ("H2ToH1H1_H1To2Mu2B_mH2-125_mH1-30_LowJetPt10" , []),
+    ("H2ToH1H1_H1To2Mu2B_mH2-125_mH1-40_LowJetPt10" , [124,117,41]),
+    ("H2ToH1H1_H1To2Mu2B_mH2-125_mH1-50_LowJetPt10" , [87, 72, 88, 89, 91, 92, 154, 163, 164, 158, 151, 149, 171, 170, 209, 188, 232, 233, 217, 237, 84, 196, 168, 207, 206, 187, 141, 111, 213, 29, 36, 192, 31, 112, 173, 152, 110]),
+    ("H2ToH1H1_H1To2Mu2B_mH2-125_mH1-60_LowJetPt10" , [26, 30, 18, 19, 33, 52, 55, 56, 101, 98, 106, 95, 236, 230, 244, 245, 246, 269, 277, 283, 24, 234, 247, 218, 10, 32, 1, 107, 50]),
+]
+
+WWMissing = [
+        ("WW" , [22, 47]),
+]
+ZZMissing = [
+        ("ZZ" , [36, 47]),
+]
+WZMissing = [
+        ("WZ" , [23]),
+]
+
 mass = [125] #[110,115,120,125,130,135]
 
 SingleTsamples = [
@@ -130,6 +153,10 @@ SingleTsamples = [
     #"SingleT_t-Channel",
     #"SingleT_t-Channel"
     ]
+
+SingleTMissing = [
+        ("Wt" , [29]),
+]
 
 MC = "Summer12"
 DATA = "2012"
@@ -157,6 +184,12 @@ listdata=[
     "C",
     "D",
     ]
+listdataMissing =[
+    ("A" , []),
+    ("B" , [124,117,41]),
+    ("C" , [87, 72, 88, 89, 91, 92, 154, 163, 164, 158, 151, 149, 171, 170, 209, 188, 232, 233, 217, 237, 84, 196, 168, 207, 206, 187, 141, 111, 213, 29, 36, 192, 31, 112, 173, 152, 110]),
+    ("D" , [26, 30, 18, 19, 33, 52, 55, 56, 101, 98, 106, 95, 236, 230, 244, 245, 246, 269, 277, 283, 24, 234, 247, 218, 10, 32, 1, 107, 50]),
+]
 
 DataChannel = [
     #"DoubleEle",
@@ -202,7 +235,6 @@ jobs = {
     "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-40_LowJetPt10" : 50,
     "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-50_LowJetPt10" : 50,
     "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-60_LowJetPt10" : 50,
-    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-20" : 50,
     }
 
 if mode == "plots":
@@ -266,40 +298,65 @@ LaunchOnCondor.SendCluster_Create(FarmDirectory, JobName)
 
 if "TT" in samples :
     for tt in TTsamples :
+	missingTT = []
+        for itt in range(0,len(TTMissing)):
+          if TTMissing[itt][0] == tt:
+            missingTT = TTMissing[itt][1]
         njobs = jobs[tt]
         for i in range(0,njobs):
+	    if not i in missingTT: continue
+	    #if i in missingTT: continue
             LaunchOnCondor.SendCluster_Push(["BASH", "export weightmode='"+ttweight+"'; "+os.getcwd()+"/../PatAnalysis/ControlPlots.py -c "+theConfig+" -i /nfs/user/llbb/Pat_8TeV_"+PATversion+"/Summer12_"+tt+"/ -o "+tt+"_"+MC+"_"+str(i)+".root "+stages+" --Njobs "+str(njobs)+" --jobNumber "+str(i)])
 
 if "SingleT" in samples :
     for St in SingleTsamples :
+        missingT = []
+        for ist in range(0, len(SingleTMissing)):
+	   missingT = SingleTMissing[ist][1]
         njobs = jobs[St]
         for i in range(0,njobs):
+            if not i in missingT: continue
             LaunchOnCondor.SendCluster_Push(["BASH", os.getcwd()+"/../PatAnalysis/ControlPlots.py -c "+theConfig+" -i /nfs/user/llbb/Pat_8TeV_"+PATversion+"/Summer12_"+St+"/ -o "+St+"_"+MC+"_"+str(i)+".root "+stages+" --Njobs "+str(njobs)+" --jobNumber "+str(i)])
 
 if "ZZ" in samples :
     njobs = jobs["ZZ"]
+    missingZZ = ZZMissing[0][1]
     for i in range(0,njobs):
+	if not i in missingZZ: continue
         LaunchOnCondor.SendCluster_Push(["BASH", os.getcwd()+"/../PatAnalysis/ControlPlots.py -c "+theConfig+" -i /nfs/user/llbb/Pat_8TeV_"+PATversion+"/Summer12_ZZ/ -o ZZ_"+MC+"_"+str(i)+".root "+stages+" --Njobs "+str(njobs)+" --jobNumber "+str(i)])
 
 if "WZ" in samples :
     njobs = jobs["WZ"]
+    missingWZ = WZMissing[0][1]
     for i in range(0,njobs):
+	if not i in missingWZ: continue
         LaunchOnCondor.SendCluster_Push(["BASH", os.getcwd()+"/../PatAnalysis/ControlPlots.py -c "+theConfig+" -i /nfs/user/llbb/Pat_8TeV_"+PATversion+"/Summer12_WZ/ -o WZ_"+MC+"_"+str(i)+".root "+stages+" --Njobs "+str(njobs)+" --jobNumber "+str(i)])
 
 if "WW" in samples :
+    missingWW = WWMissing[0][1]
     njobs = jobs["WW"]
     for i in range(0,njobs):
+	if not i in missingWW: continue
         LaunchOnCondor.SendCluster_Push(["BASH", os.getcwd()+"/../PatAnalysis/ControlPlots.py -c "+theConfig+" -i /nfs/user/llbb/Pat_8TeV_"+PATversion+"/Summer12_WW/ -o WW_"+MC+"_"+str(i)+".root "+stages+" --Njobs "+str(njobs)+" --jobNumber "+str(i)])
 
 if "DATA" in samples :
     for ch in DataChannel :
         for period in listdata :
-            njobs = jobs[period]
-            for i in range(0,njobs):
-                LaunchOnCondor.SendCluster_Push(["BASH", os.getcwd()+"/../PatAnalysis/ControlPlots.py -c "+theConfig+"_data -i /nfs/user/llbb/Pat_8TeV_"+PATversion+"/"+ch+DATA+period+"/ -o "+ch+DATA+period+"_"+str(i)+".root "+stages+" --Njobs "+str(njobs)+" --jobNumber "+str(i)])
+          missingData = []
+          for idata in range(0,len(listdataMissing)):
+             if listdataMissing[idata][0] == period:
+                missingData = listdataMissing[idata][1]
+          njobs = jobs[period]
+          for i in range(0,njobs):
+	     if not i in missingData: continue
+             LaunchOnCondor.SendCluster_Push(["BASH", os.getcwd()+"/../PatAnalysis/ControlPlots.py -c "+theConfig+"_data -i /nfs/user/llbb/Pat_8TeV_"+PATversion+"/"+ch+DATA+period+"/ -o "+ch+DATA+period+"_"+str(i)+".root "+stages+" --Njobs "+str(njobs)+" --jobNumber "+str(i)])
 
 if "DY" in samples :
     for dy in DYsamples :
+	missingList = []
+        for iDy in range(0,len(DYMissing)):
+          if DYMissing[iDy][0] == dy:
+            missingList = DYMissing[iDy][1]
         njobs = jobs[dy]       
         if dybjetsplitting: 
             for fl in DYbcl :
@@ -307,6 +364,8 @@ if "DY" in samples :
                     LaunchOnCondor.SendCluster_Push(["BASH", "export ZjetFilter='"+fl.replace("_","")+"'; export weightmode='"+dyweight+"'; "+os.getcwd()+"/../PatAnalysis/ControlPlots.py -c "+theConfig+" -i /nfs/user/llbb/Pat_8TeV_"+PATversion+"/Summer12_"+dy+"/ -o "+dy+fl+"_"+MC+"_"+str(i)+".root "+stages+" --Njobs "+str(njobs)+" --jobNumber "+str(i)])
         else:
             for i in range(0,njobs):
+		if not i in missingList: continue
+		#if i in missingList: continue
 		LaunchOnCondor.SendCluster_Push(["BASH", "export weightmode='"+dyweight+"';"+os.getcwd()+"/../PatAnalysis/ControlPlots.py -c "+theConfig+" -i /nfs/user/llbb/Pat_8TeV_"+PATversion+"/Summer12_"+dy+"/ -o "+dy+"_"+MC+"_"+str(i)+".root "+stages+" --Njobs "+str(njobs)+" --jobNumber "+str(i)])
 
 if "ZH" in samples :
@@ -321,11 +380,15 @@ if "ZA" in samples :
         njobs = jobs["ZA"]
         for i in range(0,njobs):
             LaunchOnCondor.SendCluster_Push(["BASH", os.getcwd()+"/../PatAnalysis/ControlPlots.py -c "+theConfig+" -i /nfs/user/acaudron/"+za+"_PAT2014/ -o "+za+"_"+MC+"_"+str(i)+".root "+stages+" --Njobs "+str(njobs)+" --jobNumber "+str(i)])
-
 if "Hamb" in samples :
     for St in Hambsamples :
+	missingList = []
+        for iSt in range(0,len(HambMissing)):
+	  if HambMissing[iSt][0] == St:
+	    missingList = HambMissing[iSt][1]
         njobs = jobs[St]
         for i in range(0,njobs):
+	    if not i in missingList: continue
             LaunchOnCondor.SendCluster_Push(["BASH", os.getcwd()+"/../PatAnalysis/ControlPlots.py -c "+theConfig+" -i /nfs/user/llbb/Pat_8TeV_"+PATversion+"/Summer12_"+St+"/ -o "+St+"_"+MC+"_"+str(i)+".root "+stages+" --Njobs "+str(njobs)+" --jobNumber "+str(i)])
 
 
