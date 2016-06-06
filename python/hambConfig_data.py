@@ -5,7 +5,11 @@ changeDiLeptCand(conf = configuration, names = {"leptonsPair" : "bestHambDiMuCan
 changeDiLeptCand(conf = configuration, names = {"muonsPair" : "bestHambDiMuCandidate"})
 changeJetPt(conf = configuration, ptjet=15.)
 changeHambMuPt(conf = configuration, leadPt=17., secPt = 8.) #asymmetric muon pt cut
+<<<<<<< HEAD
 changeBTAG(conf = configuration, btagging="CSV", WP=["M","M"])
+=======
+changeBTAG(conf = configuration, btagging="CSV", WP=["T","L"])
+>>>>>>> c5894ebad504de252d3ef54e6178502dd32a27dc
 #changeHambMuEta(conf = configuration, muEta = 2.1) #asymmetric muon pt cut
 class configuration(configuration):
 
@@ -39,7 +43,11 @@ class configuration(configuration):
   mHwindow = 20
   # my variables: files, systematics and other options
   btagging = "CSV"
+<<<<<<< HEAD
   WP = ["M","M"] # to be ordered from tighter to looser ones: ["M","L"], ["T","L"], ["T","M"]
+=======
+  WP = ["T","L"] # to be ordered from tighter to looser ones: ["M","L"], ["T","L"], ["T","M"]
+>>>>>>> c5894ebad504de252d3ef54e6178502dd32a27dc
   mHOpt = [18., 20., 20., 15., 16., 18., 18., 20.]
   mu1ptOpt = [24., 24., 24., 35., 30., 30., 23., 17.]
   mu2ptOpt = [8., 8., 15., 10., 16., 17., 10., 10.]

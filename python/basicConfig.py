@@ -137,7 +137,11 @@ class configuration:
   #list of objects to update if you plan to chenge the b-tag WP and/or algo (see: "changeBTAG" below)
   toupdateForBtag = {
     "controlPlots" : ["jetmet","jetmetmatched"],
+<<<<<<< HEAD
     #"controlPlots" : ["jetmet"],
+=======
+#    "controlPlots" : ["jetmet"],
+>>>>>>> c5894ebad504de252d3ef54e6178502dd32a27dc
     "eventProducers" : ["category", "dijet_muChannel", "dijet_eleChannel", "dijet_all"]
     }
 

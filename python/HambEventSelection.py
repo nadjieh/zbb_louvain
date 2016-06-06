@@ -23,11 +23,19 @@ categories = [
   "Trigger no match + 2mu", #1
   "Trigger no match + 2mu + HLT match", #2
   "Trigger no match + 2mu + HLT match + >1j", #3
+<<<<<<< HEAD
   "Trigger no match + 2mu + HLT match + >1j + > 1b (HPHP)", #4
   "Trigger no match + 2mu + HLT match + >1j + > 1b (HPHP) + MetSig < 6", #5
   "Trigger no match + 2mu + HLT match + >1j + > 1b (HPHP) + MetSig < 6 + [20,70]", #6
   "Trigger no match + 2mu + HLT match + >1j + > 1b (HPHP) + MetSig < 6 + [10,120]", #7
   "Trigger no match + 2mu + HLT match + >1j + > 1b (HPHP) + MetSig > 10 + [20,70]", #8
+=======
+  "Trigger no match + 2mu + HLT match + >1j + >= 1b (HP)", #4
+  "Trigger no match + 2mu + HLT match + >1j + >= 1b (HP) + MetSig < 6", #5
+  "Trigger no match + 2mu + HLT match + >1j + >= 1b (HP) + MetSig < 6 + [20,70]", #6
+  "Trigger no match + 2mu + HLT match + >1j + >= 1b (HP) + MetSig < 6 + [10,120]", #7
+  "Trigger no match + 2mu + HLT match + >1j + >= 1b (HP) + MetSig > 10 + [20,70]", #8
+>>>>>>> c5894ebad504de252d3ef54e6178502dd32a27dc
 ]
 
 categoryNames = [ chan+"/"+cat for chan in channels for cat in categories ]
@@ -43,6 +51,7 @@ def isInCategoryChannel(category, categoryTuple):
   # category 1: dimu HLT `and` dimuon candidte
   elif category==1:
     return (isInCategoryChannel(0, categoryTuple) and categoryTuple[1]==1)
+<<<<<<< HEAD
  # category 2: dimu HLT `and` dimuon candidte `and` muons matched with HLT objects
   elif category==2:
     return (isInCategoryChannel(1, categoryTuple) and categoryTuple[3]==1)
@@ -56,6 +65,21 @@ def isInCategoryChannel(category, categoryTuple):
   elif category==5:
     return (isInCategoryChannel(4, categoryTuple) and categoryTuple[8]<6)
   # category 6: dimu HLT `and` dimuon candidte `and` muons matched with HLT objects `and` at least 2 jets `and` the highest tags are Medium & Medium `and` MetSig `and` mll in [20,70]
+=======
+  # category 2: dimu HLT `and` dimuon candidte `and` muons matched with HLT objects
+  elif category==2:
+    return (isInCategoryChannel(1, categoryTuple) and categoryTuple[3]==1)
+  # category 3: dimu HLT `and` dimuon candidte `and` muons matched with HLT objects `and` at least 2 jets
+  elif category==3:
+    return (isInCategoryChannel(2, categoryTuple) and categoryTuple[4]>1)
+  # category 4: dimu HLT `and` dimuon candidte `and` muons matched with HLT objects `and` at least 2 jets `and` the highest tag is tight
+  elif category==4:
+    return (isInCategoryChannel(3, categoryTuple) and categoryTuple[6]>0)
+  # category 5: dimu HLT `and` dimuon candidte `and` muons matched with HLT objects `and` at least 2 jets `and` the highest tag is tight `and` MetSig
+  elif category==5:
+    return (isInCategoryChannel(4, categoryTuple) and categoryTuple[8]<6)
+  # category 6: dimu HLT `and` dimuon candidte `and` muons matched with HLT objects `and` at least 2 jets `and` the highest tag is tight `and` MetSig `and` mll in [20,70]
+>>>>>>> c5894ebad504de252d3ef54e6178502dd32a27dc
   elif category==6:
     return (isInCategoryChannel(5, categoryTuple) and categoryTuple[2] > configuration.lowmassMu and categoryTuple[2] < configuration.highmassMu)
   # category 7: DY bkg 5 + mll in [10,120]
@@ -209,9 +233,14 @@ def eventCategoryChannel(event, muChannel=True, btagging="CSV", WP=["M","L"], Zj
   #print "The length of CategoryChannel is "
   #print len(output)
   # return the list of results
+<<<<<<< HEAD
   mymatched = []
   if not checkTrigger: 
      mymatched = event.goodJets_muMatched
+=======
+  
+  mymatched = event.goodJets_muMatched
+>>>>>>> c5894ebad504de252d3ef54e6178502dd32a27dc
   
   return output
 
