@@ -30,11 +30,7 @@ dir_plot = {
 dir_rds = {
   "abdollah": "",
   "acaudron": "/nfs/user/acaudron/ControlPlots/cp5314p1/",
-<<<<<<< HEAD
   "ajafari": "/home/fynu/ajafari/storage/RDS/SL6/V6/",
-=======
-  "ajafari": "/home/fynu/ajafari/storage/RDS/SL6/V4MuMult/",
->>>>>>> c5894ebad504de252d3ef54e6178502dd32a27dc
   "bfrancois": "/nfs/user/bfrancois/RDS/",
   "cbeluffi": "/home/fynu/cbeluffi/storage/ControlPlots/",
   "vizangarciaj": "/home/fynu/vizangarciaj/storage/RDS/testOct2014/",
@@ -53,11 +49,7 @@ samples = [
     #"WZ",
     #"SingleT",
     ##"ZA"
-<<<<<<< HEAD
     #"Hamb"
-=======
-    "Hamb"
->>>>>>> c5894ebad504de252d3ef54e6178502dd32a27dc
     ]
 ZZsamples = [
     "ZZ",
@@ -119,21 +111,14 @@ if mode == "plots":
 
 TTsamples = [
     "TTFullLept",
-<<<<<<< HEAD
  #   "TTSemiLept",
-=======
-    #"TTSemiLept",
->>>>>>> c5894ebad504de252d3ef54e6178502dd32a27dc
     ]
 Hambsamples = [
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-30_LowJetPt10",
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-40_LowJetPt10",
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-50_LowJetPt10",
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-60_LowJetPt10",
-<<<<<<< HEAD
    "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-20",
-=======
->>>>>>> c5894ebad504de252d3ef54e6178502dd32a27dc
 ]
 mass = [125] #[110,115,120,125,130,135]
 
@@ -217,10 +202,7 @@ jobs = {
     "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-40_LowJetPt10" : 50,
     "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-50_LowJetPt10" : 50,
     "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-60_LowJetPt10" : 50,
-<<<<<<< HEAD
     "H2ToH1H1_H1To2Mu2B_mH2-125_mH1-20" : 50,
-=======
->>>>>>> c5894ebad504de252d3ef54e6178502dd32a27dc
     }
 
 if mode == "plots":
