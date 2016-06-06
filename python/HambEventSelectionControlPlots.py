@@ -181,13 +181,9 @@ class HambEventSelectionControlPlots(BaseControlPlots):
 
 	#Jet selection
         dijet = event.dijet_muChannel
-<<<<<<< HEAD
         matchedjets = []
 	if not event.object().event().eventAuxiliary().isRealData():
            matchedjets = event.dijet_matchedJetWithB
-=======
-        matchedjets = event.dijet_matchedJetWithB
->>>>>>> c5894ebad504de252d3ef54e6178502dd32a27dc
         if not dijet[0] is None:
           b1 = ROOT.TLorentzVector(dijet[0].px(),dijet[0].py(),dijet[0].pz(),dijet[0].energy())
         if not dijet[1] is None:
